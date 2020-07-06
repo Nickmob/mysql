@@ -1,0 +1,65 @@
+[mysqld]
+
+# MyISAM
+key_buffer_size		= 100M
+
+# Table cache
+open_files_limit = 100000
+table_open_cache	= 20000
+table_definition_cache	= 2000
+
+# Temp tables
+tmp_table_size		= 128M
+max_heap_table_size	= 128M
+
+# Timeouts
+lock_wait_timeout   = 100
+wait_timeout        = 300
+innodb_lock_wait_timeout = 30
+max_execution_time  = 6000
+
+# QC - 5.7 only
+query_cache_limit	= 1M
+query_cache_size 	= 256M
+query_cache_type	= 1
+
+# Buffers
+#join_buffer_size	= 1M
+#read_rnd_buffer_size = 1M
+#sort_buffer_size	= 1M
+bulk_insert_buffer_size = 16M
+
+
+#InnoDB
+innodb_flush_method 	= O_DIRECT
+innodb_buffer_pool_size	= 8G
+innodb_log_file_size	= 128M
+innodb_log_buffer_size  = 64M
+innodb_flush_log_at_trx_commit = 2
+
+# Binlog
+log_bin			= /var/log/mysql/mysql-bin.log
+sync_binlog		= 0
+expire_logs_days	= 3
+max_binlog_size     = 1G
+
+# Disable binlog
+# skip-log-bin
+
+# Slow query log
+log_output = file
+slow_query_log = ON
+long_query_time = 0
+log_slow_admin_statements = ON
+
+# PMM logs - Percona server
+log_slow_rate_limit = 100
+log_slow_rate_type = query
+log_slow_verbosity = full
+log_slow_slave_statements = ON
+slow_query_log_always_write_time = 0.2
+slow_query_log_use_global_control = all
+innodb_monitor_enable = all
+userstat=1
+
+
